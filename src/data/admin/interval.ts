@@ -1,0 +1,1 @@
+export const interval = ["1 minggu", "2 minggu", "1 bulan", "2 bulan"]

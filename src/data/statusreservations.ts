@@ -1,0 +1,1 @@
+export const statusreservations = ['Menuggu', 'Terverifikasi', 'Terkonfirmasi', 'Pelanggaran', 'Selesai', 'Dibatalkan'];

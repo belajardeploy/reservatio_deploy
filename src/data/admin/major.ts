@@ -1,0 +1,1 @@
+export const major = ["Teknik Informatika - S1", "Sistem Informasi - S1"]

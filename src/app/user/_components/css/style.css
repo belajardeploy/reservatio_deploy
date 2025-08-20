@@ -1,0 +1,65 @@
+/* Mengatur tampilan container kalender secara umum */
+.react-datepicker {
+  font-family: poppins;
+  border: none;
+  box-shadow: #b9c3e3 0px 0px 10px 1px;
+}
+
+/* Header: menghilangkan garis, dsb. */
+.react-datepicker__header {
+  background-color: #fff;
+  border-bottom: none;
+}
+
+/* Teks bulan/tahun */
+.react-datepicker__current-month {
+  font-weight: bold;
+  color: #1e3a8a;
+  font-size: 1rem;
+  padding-bottom: 10px;
+}
+
+/* Styling default untuk setiap hari */
+.react-datepicker__day {
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Hari yang sedang dipilih */
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #1e3a8a; /* contoh warna biru */
+  color: #fff;
+}
+
+/* Hari ketika hover */
+.react-datepicker__day:hover {
+  border-radius: 50%;
+  background-color: #f2f4f7 !important; /* Change this to your desired color */
+  color: #101828; /* Change this to your desired color */
+}
+
+/* Menandai hari saat ini (today) dengan border, misalnya */
+.react-datepicker__day--today {
+  border: 1px solid #1e3a8a;
+  border-radius: 20%;
+  font-weight: bold;
+}
+
+
+.custom-datepicker-input:focus {
+  border-color: #1e3a8a;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+.custom-datepicker-input {
+  width: 200px;
+  padding: 8px 12px;
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
