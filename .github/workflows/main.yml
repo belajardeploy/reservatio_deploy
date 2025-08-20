@@ -1,0 +1,51 @@
+name: Deploy project NextJS to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    # deploy to VPS
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pull to server
+        uses: appleboy/ssh-action@master
+        with:
+          command_timeout: 200m
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+
+          script: |
+            echo "Starting deployment from branch ${{ github.ref }}"
+
+            echo "Pulling latest changes from the repository..."
+            GIT_BRANCH="main"
+            cd ${{ secrets.VPS_PARENT_DIR }}/reservatio_deploy
+
+            git fetch origin $GIT_BRANCH
+            git reset --hard origin/$GIT_BRANCH
+
+            echo "Installing dependencies..."
+            npm install
+
+            echo "Building the project..."
+            npm run build
+
+            echo "Deleting process pm2..."
+            pm2 delete reservatio || true
+
+            echo "Starting the project with PM2..."
+            PORT=3050 pm2 start npm --name reservatio -- start
+
+            echo "Saving pm2 process list..."
+            pm2 save
+
+            echo "Deployment completed successfully for branch GIT_BRANCH"
