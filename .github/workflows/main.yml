@@ -34,18 +34,18 @@ jobs:
             git reset --hard origin/$GIT_BRANCH
 
             echo "Installing dependencies..."
-            npm install
+            bash -lc "npm install"
 
             echo "Building the project..."
-            npm run build
+            bash -lc "npm run build"
 
             echo "Deleting process pm2..."
-            pm2 delete reservatio || true
+            bash -lc "pm2 delete reservatio" || true
 
             echo "Starting the project with PM2..."
-            PORT=3050 pm2 start npm --name reservatio -- start
+            bash -lc "PORT=3050 pm2 start npm --name reservatio -- start"
 
             echo "Saving pm2 process list..."
-            pm2 save
+            bash -lc "pm2 save"
 
             echo "Deployment completed successfully for branch GIT_BRANCH"
